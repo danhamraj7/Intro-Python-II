@@ -1,0 +1,1 @@
+.strip().lower().s
