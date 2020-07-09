@@ -79,13 +79,13 @@ while True:
 # * Waits for user input and decides what to do.
     # will return a list not str
     first_char = input(
-        "\nchoose your direction e/w/n/s: ").strip().lower().split()
+        "\nchoose your direction e/w/n/s/ or q to quit game:").strip().lower().split()
     first_first_char = first_char[0]
     first_char = first_first_char[0]
 # If the user enters "q", quit the game.
     if first_char == 'q':
         print(player.name)
-        print("You have exit the game, Thanks for playing.")
+        print("You have exited the game, Thanks for playing.")
         break
 
     #
