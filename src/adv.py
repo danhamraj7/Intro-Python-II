@@ -59,7 +59,7 @@ def try_direction(player, direction):
 
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player('Dan', room['outside'])
+player = Player("Dan", room['outside'])
 
 # Write a loop that:
 
@@ -69,33 +69,44 @@ while True:
     # * Prints the current room name
     # * Prints the current description (the textwrap module might be
     # useful here).
-    print("\n")
-    print(player.location)
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be
-# useful here).
+    # print("\n")
+    print("Player:", player.name)
+    print("Current Location:", player.location)
+
+    # for line in textwrap.wrap(player.location):
+    #     print(line)
+
 # * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the
-# room there.
-# Print an error message if the movement isn't allowed.
-#
+    # will return a list not str
+    first_char = input(
+        "\nchoose your direction e/w/n/s: ").strip().lower().split()
+    first_first_char = first_char[0]
+    first_char = first_first_char[0]
 # If the user enters "q", quit the game.
+    if first_char == 'q':
+        print(player.name)
+        print("You have exit the game, Thanks for playing.")
+        break
 
-user_is_playing = True
+    #
+    # If the user enters a cardinal direction, attempt to move to the
+    # room there.
+    # Print an error message if the movement isn't allowed.
+    # user can enter 'east', 'west', 'north', 'south' or
+    # let the them enter 'e' , 'w' 'n' 's' in order to move.
+    # so to do this I will strip everything the first character.
 
-while user_is_playing:
-    print(my_player.current_room.name)
-    for line in textwrap.wrap(my_player.current_room.description):
-        # this returns a list of strings so we use a for loop
-        print(line)
+    if first_char == 'n':
+        # move to the north
+        try_direction(player, first_char)
+    elif first_char == 's':
+        # move to the south
+        try_direction(player, first_char)
+    elif first_char == 'e':
+        # move to the east
+        try_direction(player, first_char)
+    elif first_char == 'w':
+        # move to the west
+        try_direction(player, first_char)
 
-        user_input = input("which direction would you like to go? (n/e/w/s)")
-
-        if user_input in ["n", "e", "w", "s"]:
-            my_player.move(user_input)
-        else:
-            print("You existed the game Thanks for playing")
-
-        user_is_playing = False
+        #
