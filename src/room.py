@@ -12,7 +12,7 @@ class Room:
 
     def list_items(self):
         if not self.items:
-            print('This room does not have any items')
+            print('Room Description: This room does not have any items')
         else:
             print('This room has: ')
             for item in self.items:

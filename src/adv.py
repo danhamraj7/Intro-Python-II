@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 import textwrap
+from item import Item
 
 # Declare all the rooms
 
@@ -34,6 +35,18 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+# Create Items
+items = {
+    'headlight': Item('headlight', 'wear it to light up dark rooms'),
+    'sword': Item('sword', 'Used it to fight of the guards of the treasure'),
+    'binoculars': Item('binoculars', 'Used to see out on overlook')
+}
+
+# Add items to room
+room['outside'].items.append(items['headlight'])
+room['overlook'].items.append(items['binoculars'])
+room['treasure'].items.append(items['sword'])
 
 #
 # Main
@@ -72,6 +85,8 @@ while True:
     # print("\n")
     print("Player:", player.name)
     print("Current Location:", player.location)
+    # prints currently held items
+    print(f'\nHeld Items: {player.location.list_items()}\n')
 
     # for line in textwrap.wrap(player.location):
     #     print(line)
