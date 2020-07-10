@@ -5,6 +5,16 @@ class Room:
     def __init__(self, name, description):
         self.name = name
         self.description = description
+        self.items = []
 
     def __str__(self):
         return f"{self.name}: {self.description}"
+
+    def list_items(self):
+        if not self.items:
+            print('Room Description: This room does not have any items')
+        else:
+            print('This room has: ')
+            for item in self.items:
+                print(item.name)
+                print(item.description)

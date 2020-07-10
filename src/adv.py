@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 import textwrap
+from item import Item
 
 # Declare all the rooms
 
@@ -34,6 +35,18 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+# Create Items
+items = {
+    'headlight': Item('headlight', 'wear it to light up dark rooms'),
+    'sword': Item('sword', 'Used it to fight of the guards of the treasure'),
+    'binoculars': Item('binoculars', 'Used to see out on overlook')
+}
+
+# Add items to room
+room['outside'].items.append(items['headlight'])
+room['overlook'].items.append(items['binoculars'])
+room['treasure'].items.append(items['sword'])
 
 #
 # Main
@@ -72,6 +85,8 @@ while True:
     # print("\n")
     print("Player:", player.name)
     print("Current Location:", player.location)
+    # prints currently held items
+    print(f'\nHeld Items: {player.location.list_items()}\n')
 
     # for line in textwrap.wrap(player.location):
     #     print(line)
@@ -79,13 +94,13 @@ while True:
 # * Waits for user input and decides what to do.
     # will return a list not str
     first_char = input(
-        "\nchoose your direction e/w/n/s: ").strip().lower().split()
+        "\nchoose your direction e/w/n/s/ or q to quit game:").strip().lower().split()
     first_first_char = first_char[0]
     first_char = first_first_char[0]
 # If the user enters "q", quit the game.
     if first_char == 'q':
         print(player.name)
-        print("You have exit the game, Thanks for playing.")
+        print("You have exited the game, Thanks for playing.")
         break
 
     #
